@@ -1,0 +1,141 @@
+@import "../utils/variables";
+
+.header {
+  font-family: $font-family;
+  background-color: $white;
+  color: $brand-green;
+  height: $header-height;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+  &__container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* LOGO + TYTUŁ */
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &__img {
+      width: 70px;   // większe logo
+      height: 70px;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;   // większy tytuł
+    font-weight: 500;
+    color: $brand-green;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* NAWIGACJA */
+  &__nav {
+    &__list {
+      list-style: none;
+      display: flex;
+      gap: 30px;       // większe odstępy między linkami
+      margin: 0;
+      padding: 0;
+
+      &__item {
+  cursor: pointer;          // łapka dla całego li
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: $brand-green;
+  transition: color 0.3s ease;
+  font-weight: 500;
+
+  &:hover {
+    color: $brand-green-dark;
+  }
+
+  // Wszystko w środku dziedziczy te same style
+  a, span {
+    color: inherit;
+    text-decoration: none;  // usuwa podkreślenie
+    cursor: inherit;        // dziedziczy łapkę
+    font-weight: 400;
+  }
+}
+    }
+
+    /* Mobile */
+    @media (max-width: $breakpoint-mobile) {
+      position: absolute;
+      top: 14vh;
+      left: 0;
+      width: 100%;
+      background-color: $white;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      text-align: center;
+
+      &--open {
+        max-height: 400px; // większe menu dla większych linków
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      &__list {
+        flex-direction: column;
+        gap: 20px;
+        padding: 25px 0;
+
+        &__item a {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  /* HAMBURGER */
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &__line {
+      width: 100%;
+      height: 4px;
+      background-color: $brand-green;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    &.is-active {
+      .header__hamburger__line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .header__hamburger__line:nth-child(2) {
+        opacity: 0;
+      }
+      .header__hamburger__line:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      display: flex;
+    }
+  }
+}

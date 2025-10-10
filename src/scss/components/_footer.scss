@@ -1,0 +1,46 @@
+@import "../utils/variables";
+.footer {
+  background-color: $white;
+  color: $brand-green;
+  height: $footer-height;
+  display: flex;
+  align-items: center;
+  font-family: $font-family;
+  .footer__container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &__text {
+    font-size: 0.9rem;
+  }
+  &__nav {
+    &__list {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+      &__item a {
+        text-decoration: none;
+        color:$brand-green;
+        font-weight: 400;
+        transition: color 0.3s;
+        &:hover {
+          color: $brand-green;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    .footer__container {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+  }
+}

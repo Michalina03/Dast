@@ -1,0 +1,255 @@
+@import "../utils/variables";
+/* 1. Hero */
+.about-hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: $font-family;
+  color: $white;
+  overflow: hidden;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, $beige, $gray);
+    z-index: 0;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    opacity: 0;
+    animation: fadeSlideUp 1s forwards;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    background: $white;
+    color: $beige;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      background: $white-beige;
+    }
+  }
+}
+
+/* 2. Timeline */
+.about-timeline {
+  padding: 5rem 2rem;
+  background: $white-beige;
+  font-family: $font-family;
+  text-align: center;
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__line {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    border-left: 3px solid $beige;
+    padding-left: 2rem;
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeSlideUp 1s forwards;
+
+    .dot {
+      position: absolute;
+      left: -1.1rem;
+      top: 0.2rem;
+      width: 20px;
+      height: 20px;
+      background: $beige;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+/* 3. Team */
+.about-team {
+  padding: 5rem 2rem;
+  background: $beige-lite;
+  text-align: center;
+  font-family: $font-family;
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    background: $white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: 0.4s;
+    font-weight: bold;
+
+    span {
+      display: block;
+      font-weight: normal;
+      font-size: 0.9rem;
+      color: $gray;
+    }
+
+    &:hover {
+      transform: rotate(-2deg) scale(1.05);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+/* 4. Values */
+.about-values {
+  position: relative;
+  padding: 6rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, $white-beige, $beige-lite);
+
+  &__wave {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: $beige;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &__items {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    &__item {
+      padding: 2rem;
+      background: $white;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.1) rotate(2deg);
+      }
+    }
+  }
+}
+
+/* 5. CTA z mapą */
+.about-cta {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: $font-family;
+  color: $white;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 2;
+    max-width: 600px;
+    padding: 2rem;
+    opacity: 0;
+    animation: fadeSlideUp 1s forwards;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    margin-bottom: 2rem;
+  }
+
+  &__btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    background: $beige;
+    color: $white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      background: darken($beige,10%);
+    }
+  }
+
+  &__map {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+}
+
+/* Animacje */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}

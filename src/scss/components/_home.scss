@@ -1,0 +1,315 @@
+@import "../utils/variables";
+/* 1. Split Hero */
+.split-hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
+  background: $black;
+  color: $white;
+  flex-wrap: wrap;
+  font-family: $font-family;
+  overflow: hidden;
+
+  &__content {
+    flex: 1 1 50%;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeSlideUp 1s forwards 0.2s;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    margin-bottom: 2rem;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    .split-hero__btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      border: none;
+      background: $beige;
+      color: $white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      &--alt {
+        background: transparent;
+        border: 2px solid $beige;
+
+        &:hover {
+          background: $beige;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  &__image {
+    flex: 1 1 40%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: imageZoomIn 1s forwards 0.5s;
+
+    img {
+      max-width: 100%;
+      max-height: 400px;
+      border-radius: 20px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+
+    &__image img {
+      max-height: 250px;
+    }
+  }
+}
+
+/* Animacje */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes imageZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 2. Background Hero */
+.bg-hero {
+  position: relative;
+  height: 100vh;
+  background: url("/src/img/foto.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  text-align: center;
+  font-family: $font-family;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(62, 62, 62, 0.6); // przyciemnienie
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    margin-bottom: 2rem;
+  }
+
+  &__btn {
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
+    border: none;
+    background: $beige;
+    color: $white;
+  }
+}
+
+/* 3. Grid Features */
+.grid-features {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: $white-beige;
+  font-family: $font-family;
+
+  &__header {
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    color: $gray;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  &__item {
+    background: $white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  &__item-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* 4. Pricing */
+.pricing {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: $beige-lite;
+  font-family: $font-family;
+
+  &__title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  &__card {
+    background: $white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+    &--highlight {
+      border: 2px solid $beige;
+      transform: scale(1.05);
+    }
+  }
+
+  &__plan {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__price {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__btn {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    background: $beige;
+    color: $white;
+  }
+}
+
+/* 5. Testimonials */
+.testimonials {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: $white;
+  font-family: $font-family;
+
+  &__title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  &__list {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+    background: $white;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 300px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* 6. Newsletter */
+.newsletter {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: $gray;
+  color: $white;
+  font-family: $font-family;
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    margin-bottom: 2rem;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__input {
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+    border: 1px solid $white;
+    min-width: 250px;
+    background: $white;
+    color: $black;
+  }
+
+  &__btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    background: $beige;
+    color: $white;
+  }
+}
