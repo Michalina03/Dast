@@ -1,11 +1,12 @@
 @import "../utils/variables";
 .footer {
   background-color: $white;
-  color: $brand-green;
+  color: $warm-brown;
   height: $footer-height;
   display: flex;
   align-items: center;
   font-family: $font-family;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
   .footer__container {
     width: 90%;
     margin: 0 auto;
@@ -26,11 +27,11 @@
       padding: 0;
       &__item a {
         text-decoration: none;
-        color:$brand-green;
-        font-weight: 400;
+        color:$warm-brown;
+        font-weight: 800;
         transition: color 0.3s;
         &:hover {
-          color: $brand-green;
+          color: $warm-brown-hover;
         }
       }
     }

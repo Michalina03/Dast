@@ -1,77 +1,72 @@
 import React from 'react'
+import foto from "../img/foto.jpg";
 
 function About() {
-  return   (
-    <>
-      {/* 1. Hero */}
-      <section className="about-hero section">
-        <div className="about-hero__overlay"></div>
-        <div className="about-hero__content">
-          <h1 className="about-hero__title">Who We Are</h1>
-          <p className="about-hero__text">
-            Crafting the perfect brew with passion, dedication, and a sprinkle of creativity.
-          </p>
-          <button className="about-hero__btn">Explore More</button>
+  return (
+     <section className="about" aria-labelledby="about-title">
+      <div className="about__top">
+        <div className="about__media">
+          <img src={foto} alt="Zdjęcie firmy" className="about__image" />
         </div>
-      </section>
 
-      {/* 2. Timeline / Historia */}
-      <section className="about-timeline section">
-        <h2 className="about-timeline__title">Our Journey</h2>
-        <div className="about-timeline__line">
-          <div className="about-timeline__item">
-            <span className="dot"></span>
-            <p>2015 – Started in a small garage with a big dream.</p>
+        <div className="about__content">
+          <h2 id="about-title" className="about__title">O naszej firmie</h2>
+          <p className="about__eyebrow">Usługi budowlane i transportowe · Mazowieckie</p>
+
+          <div className="about__text about__text--bigger">
+            <p>
+              Nasza firma specjalizuje się w wyburzeniach, rozbiórkach, wykopach,
+              budowie i utwardzaniu nawierzchni, usługach sprzętem ciężkim oraz
+              transporcie materiałów sypkich. Działamy szybko, sprawnie i zawsze
+              z naciskiem na bezpieczeństwo i terminowość.
+            </p>
+            <p>
+              Oferujemy kompleksowe wsparcie inwestycyjne – od doradztwa technicznego,
+              przez prace ziemne, po transport i sprzedaż materiałów. Dzięki własnemu
+              zapleczu sprzętowemu realizujemy zlecenia niezależnie od skali projektu.
+            </p>
           </div>
-          <div className="about-timeline__item">
-            <span className="dot"></span>
-            <p>2018 – Opened our first café in Brewtown.</p>
-          </div>
-          <div className="about-timeline__item">
-            <span className="dot"></span>
-            <p>2022 – Serving coffee lovers worldwide.</p>
+
+          <div className="about__actions">
+            <button className="about__btn about__btn--primary">Zobacz ofertę</button>
+            <button className="about__btn about__btn--ghost">Sprawdź materiały</button>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* 3. Team */}
-      <section className="about-team section">
-        <h2 className="about-team__title">Meet the Crew</h2>
-        <div className="about-team__cards">
-          <div className="about-team__card">Alice<br /><span>Barista</span></div>
-          <div className="about-team__card">Bob<br /><span>Roaster</span></div>
-          <div className="about-team__card">Carol<br /><span>Manager</span></div>
-        </div>
-      </section>
+      {/* --- SEKCJA REALIZACJI --- */}
+      <div className="about__services" aria-label="Nasze realizacje">
+        <h2 className="about__services-title">Nasze realizacje</h2>
+        <p className="about__services-subtitle">
+          Poznaj przykładowe realizacje oraz zakres naszych usług.
+        </p>
 
-      {/* 4. Values */}
-      <section className="about-values section">
-        <div className="about-values__wave"></div>
-        <h2 className="about-values__title">Our Core Values</h2>
-        <div className="about-values__items">
-          <div className="about-values__item">☕ Quality</div>
-          <div className="about-values__item">🌍 Sustainability</div>
-          <div className="about-values__item">🤝 Community</div>
+        <div className="about__services-inner">
+          {[
+            { title: "Roboty ziemne i wykopy", bullets: ["Wykopy pod budynki", "Korytowanie pod drogi", "Prace ziemne"] },
+            { title: "Wyburzenia i kruszenie betonu", bullets: ["Kruszenie betonu", "Rozbiórki obiektów", "Recykling gruzu"] },
+            { title: "Budowa nawierzchni i utwardzenie terenu", bullets: ["Utwardzenia placów", "Budowa dróg lokalnych", "Zagęszczanie podłoża"] },
+            { title: "Usługi sprzętem ciężkim", bullets: ["Koparki, walce, spycharki", "Operacje zdalne", "Transport na placu budowy"] },
+            { title: "Transport i wywóz materiałów", bullets: ["Transport kruszyw", "Wywóz gruzu", "Logistyka materiałowa"] },
+            { title: "Sprzedaż materiałów", bullets: ["Piasek, żwir, kruszywo", "Dostawa do klienta", "Doradztwo w doborze"] },
+          ].map((item, idx) => (
+            <article className="about__card" key={idx}>
+              <div className="about__card-media">
+                <img src={foto} alt={item.title} className="about__card-image" />
+              </div>
+              <div className="about__card-body">
+                <h3 className="about__card-title">{item.title}</h3>
+                <ul className="about__card-list">
+                  {item.bullets.map((b, i) => (
+                    <li key={i} className="about__card-item">• {b}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
-
-       
-      {/* 5. CTA z mapą */}
-      <section className="about-cta section">
-        <div className="about-cta__overlay"></div>
-        <div className="about-cta__content">
-          <h2 className="about-cta__title">Visit Us</h2>
-        </div>
-        <div className="about-cta__map">
-          <iframe
-            title="Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2393.8489008935476!2d20.78197889954835!3d53.13085791569785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471dda78507566a7%3A0xa9c3b3aa73d836e5!2sBorowe-Gryki%2011%2C%2006-316%20Borowe-Chrzczany!5e0!3m2!1spl!2spl!4v1760104532479!5m2!1spl!2spl" 
-            style={{ border: 0, width: "100%", height: "100%" }}
-            allowFullScreen
-          ></iframe>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 

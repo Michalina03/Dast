@@ -1,136 +1,155 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import About from "./About";
 import Contact from "./Contact";
-import Img from "../img/foto.jpg";
+import foto from "../img/foto.jpg";
 
-export default function Home() {
+export default function Home(){ 
+const [years, setYears] = useState(0); // licznik 0 -> 8
+  const [clients, setClients] = useState(0); // licznik 0 -> 100+
+
+  // Refs to control animation (start once when visible)
+  const sectionRef = useRef(null);
+  const startedRef = useRef(false);
+
+  useEffect(() => {
+    // IntersectionObserver żeby uruchomić liczniki gdy komponent wejdzie w viewport
+    const el = sectionRef.current;
+    if (!el) {
+      startCounters(); // fallback
+      return;
+    }
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !startedRef.current) {
+            startedRef.current = true;
+            startCounters();
+            obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    obs.observe(el);
+
+    return () => obs.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function startCounters() {
+    // years: 0 -> 8 (stop at 8)
+    const durationYears = 900;
+    const startTime = performance.now();
+    function stepYears(now) {
+      const t = Math.min(1, (now - startTime) / durationYears);
+      const value = Math.floor(t * 8);
+      setYears(value);
+      if (t < 1) requestAnimationFrame(stepYears);
+      else setYears(8);
+    }
+    requestAnimationFrame(stepYears);
+
+    // clients: 0 -> 100+ (we animate to 100 then add +)
+    const durationClients = 1400;
+    const startTime2 = performance.now();
+    function stepClients(now) {
+      const t = Math.min(1, (now - startTime2) / durationClients);
+      const value = Math.floor(t * 100);
+      setClients(value);
+      if (t < 1) requestAnimationFrame(stepClients);
+      else setClients(100);
+    }
+    requestAnimationFrame(stepClients);
+  }
+
   return (
     <>
-      {/* 1. Split Hero */}
-      <section className="split-hero section">
-  <div className="split-hero__content">
-    <h1 className="split-hero__title">Savor the Perfect Brew!</h1>
-    <p className="split-hero__text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.
-    </p>
-    <div className="split-hero__buttons">
-      <button className="split-hero__btn">Order Now</button>
-      <button className="split-hero__btn split-hero__btn--alt">Learn More</button>
-    </div>
-  </div>
-  <div className="split-hero__image">
-    <img src={Img} alt="Coffee" />
-  </div>
-</section>
-
-      {/* 2. Background Hero */}
-      <section className="bg-hero section">
-        <div className="bg-hero__overlay"></div>
-        <div className="bg-hero__content">
-          <h1 className="bg-hero__title">Discover Unique Flavors</h1>
-          <p className="bg-hero__text">
-            Explore our carefully crafted menu designed for coffee lovers.
-          </p>
-          <button className="bg-hero__btn">Explore Menu</button>
-        </div>
-      </section>
-
-      {/* 3. Grid Features */}
-      <section className="grid-features section">
-        <div className="grid-features__header">
-          <h2 className="grid-features__title">Why Choose Us?</h2>
-          <p className="grid-features__subtitle">
-            We bring quality, passion and unique taste in every cup.
-          </p>
-        </div>
-        <div className="grid-features__items">
-          <div className="grid-features__item">
-            <h3 className="grid-features__item-title">☕ Freshly Brewed</h3>
-            <p>Every cup is made with carefully selected beans.</p>
+    <section className="home" ref={sectionRef} aria-label="Sekcja główna">
+      <div className="home__hero">
+        <div className="home__hero-inner">
+          <div className="home__text">
+            <h1 className="home__title">Roboty Ziemne</h1>
+            <p className="home__subtitle">
+              Oferujemy profesjonalne roboty ziemne i wykopy, które zapewnią
+              stabilne fundamenty dla Twojej inwestycji.
+            </p>
+            <div className="home__cta">
+              <button className="home__btn home__btn--primary">Poznaj ofertę</button>
+              <button className="home__btn home__btn--outline">Zadzwoń: 577 573 985</button>
+            </div>
           </div>
-          <div className="grid-features__item">
-            <h3 className="grid-features__item-title">🌿 Organic</h3>
-            <p>Only natural and sustainable ingredients.</p>
-          </div>
-          <div className="grid-features__item">
-            <h3 className="grid-features__item-title">⚡ Fast Service</h3>
-            <p>No waiting – your order is ready in minutes.</p>
+          <div className="home__hero-media">
+            <img src={foto} alt="Maszyna budowlana" className="home__hero-image" />
           </div>
         </div>
-      </section>
 
-      {/* 4. Pricing */}
-      <section className="pricing section">
-        <h2 className="pricing__title">Our Plans</h2>
-        <div className="pricing__cards">
-          <div className="pricing__card">
-            <h3 className="pricing__plan">Basic</h3>
-            <p className="pricing__price">$5</p>
-            <ul>
-              <li>1 Coffee / Day</li>
-              <li>Free WiFi</li>
-            </ul>
-            <button className="pricing__btn">Choose</button>
-          </div>
-          <div className="pricing__card pricing__card--highlight">
-            <h3 className="pricing__plan">Pro</h3>
-            <p className="pricing__price">$12</p>
-            <ul>
-              <li>3 Coffees / Day</li>
-              <li>Free WiFi</li>
-              <li>Exclusive Offers</li>
-            </ul>
-            <button className="pricing__btn">Choose</button>
-          </div>
-          <div className="pricing__card">
-            <h3 className="pricing__plan">Unlimited</h3>
-            <p className="pricing__price">$20</p>
-            <ul>
-              <li>Unlimited Coffee</li>
-              <li>Free WiFi</li>
-              <li>VIP Lounge Access</li>
-            </ul>
-            <button className="pricing__btn">Choose</button>
-          </div>
+      </div>
+
+      <div className="home__features">
+        <div className="home__container">
+          <article className="home__feature home__feature--counter">
+            <div className="home__feature-top">
+              <div className="home__counter" aria-live="polite" aria-atomic="true">
+                <span className="home__counter-number">{years}</span>
+                <span className="home__counter-suffix"> {years >= 8 ? "" : ""}</span>
+              </div>
+            </div>
+            <h3 className="home__feature-title">Doświadczenie</h3>
+            <p className="home__feature-desc">8 lat doświadczenia</p>
+          </article>
+
+          <article className="home__feature">
+            <div className="home__feature-top">
+              {/* Ikona druga (SVG) */}
+              <svg
+                className="home__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                role="img"
+                aria-hidden="false"
+                focusable="false"
+              >
+                <path d="M3 13h2v6H3zM19 5h2v14h-2zM7 9h2v10H7zM13 3h2v16h-2z" />
+              </svg>
+            </div>
+            <h3 className="home__feature-title">Własny sprzęt</h3>
+            <p className="home__feature-desc">Inwestujemy w najlepsze technologie dla optymalnych wyników.</p>
+          </article>
+
+          <article className="home__feature home__feature--counter">
+            <div className="home__feature-top">
+              <div className="home__counter" aria-live="polite" aria-atomic="true">
+                <span className="home__counter-number">{clients}</span>
+                <span className="home__counter-suffix"> {clients >= 100 ? "+" : ""}</span>
+              </div>
+            </div>
+            <h3 className="home__feature-title">Zadowoleni klienci</h3>
+            <p className="home__feature-desc">100+ zadowolonych klientów</p>
+          </article>
+
+          <article className="home__feature">
+            <div className="home__feature-top">
+              {/* Ikona czwarta (SVG) */}
+              <svg
+                className="home__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                role="img"
+                aria-hidden="false"
+                focusable="false"
+              >
+                <path d="M12 2L15 8l6 .5-4.5 3.5L18 20l-6-4-6 4 1.5-8L3 8.5 9 8z" />
+              </svg>
+            </div>
+            <h3 className="home__feature-title">Kompleksowe usługi</h3>
+            <p className="home__feature-desc">Pełny zakres usług z gwarancją spokoju ducha.</p>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* 5. Testimonials */}
-      <section className="testimonials section">
-        <h2 className="testimonials__title">What Our Customers Say</h2>
-        <div className="testimonials__list">
-          <div className="testimonials__item">
-            <p>"Best coffee I've ever had!"</p>
-            <span>- Anna</span>
-          </div>
-          <div className="testimonials__item">
-            <p>"Lovely atmosphere and great service."</p>
-            <span>- John</span>
-          </div>
-          <div className="testimonials__item">
-            <p>"I come here every morning – highly recommend."</p>
-            <span>- Maria</span>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Newsletter */}
-      <section className="newsletter section">
-        <h2 className="newsletter__title">Stay Updated</h2>
-        <p className="newsletter__text">
-          Subscribe to our newsletter and get the latest offers.
-        </p>
-        <form className="newsletter__form">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="newsletter__input"
-          />
-          <button type="submit" className="newsletter__btn">
-            Subscribe
-          </button>
-        </form>
-      </section>
 
       <section id="about">
         <About />

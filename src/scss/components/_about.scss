@@ -1,255 +1,234 @@
 @import "../utils/variables";
-/* 1. Hero */
-.about-hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.about {
+  padding: 40px 28px;
+  background: $page-bg;
+  color: $text-color;
   font-family: $font-family;
-  color: $white;
-  overflow: hidden;
 
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, $beige, $gray);
-    z-index: 0;
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin-bottom: 60px;
+  }
+
+  &__media {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 2.5 / 3; // zmieniony proporcjonalnie
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 14px 32px rgba($shadow-color, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 18px 42px rgba($shadow-color, 0.2);
+    }
   }
 
   &__content {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
-    opacity: 0;
-    animation: fadeSlideUp 1s forwards;
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   &__title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 36px;
+    font-weight: 800;
+    color: $title-color;
+    margin-bottom: 8px;
+  }
+
+  &__eyebrow {
+    font-size: 16px;
+    color: $muted;
+    margin-bottom: 20px;
+    font-weight: 600;
   }
 
   &__text {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    line-height: 1.8;
+    color: $text-color;
+
+    &--bigger {
+      font-size: 18px;
+      color: $muted;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
   }
 
   &__btn {
-    padding: 1rem 2rem;
     border: none;
-    border-radius: 30px;
-    background: $white;
-    color: $beige;
-    font-weight: bold;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &--primary {
+      background: $accent;
+      color: white;
+    }
+
+    &--ghost {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      color: $text-color;
+    }
 
     &:hover {
-      transform: scale(1.1);
-      background: $white-beige;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba($shadow-color, 0.1);
     }
   }
-}
 
-/* 2. Timeline */
-.about-timeline {
-  padding: 5rem 2rem;
-  background: $white-beige;
-  font-family: $font-family;
-  text-align: center;
-
-  &__title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  &__services {
+    background: $dark-section-bg;
+    padding: 40px 32px;
+    border-radius: 8px;
+    color: $light-text;
+    text-align: center;
   }
 
-  &__line {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-    border-left: 3px solid $beige;
-    padding-left: 2rem;
+  &__services-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: $light-text;
+    margin-bottom: 8px;
   }
 
-  &__item {
-    position: relative;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeSlideUp 1s forwards;
-
-    .dot {
-      position: absolute;
-      left: -1.1rem;
-      top: 0.2rem;
-      width: 20px;
-      height: 20px;
-      background: $beige;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-  }
-}
-
-/* 3. Team */
-.about-team {
-  padding: 5rem 2rem;
-  background: $beige-lite;
-  text-align: center;
-  font-family: $font-family;
-
-  &__title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  &__services-subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 32px;
   }
 
-  &__cards {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+  &__services-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
   }
 
   &__card {
-    background: $white;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    transition: 0.4s;
-    font-weight: bold;
-
-    span {
-      display: block;
-      font-weight: normal;
-      font-size: 0.9rem;
-      color: $gray;
-    }
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
-      transform: rotate(-2deg) scale(1.05);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      transform: translateY(-6px);
     }
-  }
-}
 
-/* 4. Values */
-.about-values {
-  position: relative;
-  padding: 6rem 2rem;
-  text-align: center;
-  background: linear-gradient(135deg, $white-beige, $beige-lite);
+    &-media {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      border-radius: 6px;
+    }
 
-  &__wave {
-    position: absolute;
-    top: -50px;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: $beige;
-    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
-  }
+    &-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
 
-  &__title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
+    &:hover .about__card-image {
+      transform: scale(1.05);
+    }
 
-  &__items {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    &-body {
+      padding: 12px 6px;
+    }
 
-    &__item {
-      padding: 2rem;
-      background: $white;
-      border-radius: 20px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      transition: 0.3s;
+    &-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: $light-text;
+      margin-bottom: 8px;
+    }
 
-      &:hover {
-        transform: scale(1.1) rotate(2deg);
+    &-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.85);
+
+      li {
+        margin-bottom: 4px;
       }
     }
   }
-}
 
-/* 5. CTA z mapą */
-.about-cta {
-  position: relative;
-  height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-family: $font-family;
-  color: $white;
+  @media (max-width: 1024px) {
+    &__top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 30px;
+    }
 
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 1;
-  }
+    &__media {
+      justify-content: center;
+    }
 
-  &__content {
-    position: absolute;
-    z-index: 2;
-    max-width: 600px;
-    padding: 2rem;
-    opacity: 0;
-    animation: fadeSlideUp 1s forwards;
-  }
+    &__image {
+      max-width: 320px;
+      aspect-ratio: 2 / 3;
+      height: auto;
+    }
 
-  &__title {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  &__text {
-    margin-bottom: 2rem;
-  }
-
-  &__btn {
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 30px;
-    background: $beige;
-    color: $white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-
-    &:hover {
-      transform: scale(1.1);
-      background: darken($beige,10%);
+    &__services-inner {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  &__map {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-}
+  @media (max-width: 480px) {
+    padding: 20px 12px;
 
-/* Animacje */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    &__title {
+      font-size: 26px;
+      text-align: center;
+    }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.2); opacity: 0.6; }
-  100% { transform: scale(1); opacity: 1; }
+    &__text {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    &__actions {
+      flex-direction: column;
+      gap: 10px;
+
+      .about__btn {
+        width: 100%;
+      }
+    }
+
+    &__services-inner {
+      grid-template-columns: 1fr;
+    }
+  }
 }
