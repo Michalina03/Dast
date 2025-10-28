@@ -8,7 +8,7 @@ function Contact() {
       <div className="contact__map">
         <iframe
           title="Mapa Google - APA Group"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.758003899498!2d20.911516515797587!3d52.20560797975751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecb624c8e5f3b%3A0x182089c38cf5da4d!2sul.%20Potrzebna%2011%2C%2002-448%20Warszawa!5e0!3m2!1spl!2spl!4v1697399999999!5m2!1spl!2spl"
+          src="https://www.google.com/maps?q=Leszno+4E,+06-300+Przasnysz&output=embed"
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

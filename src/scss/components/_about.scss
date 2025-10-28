@@ -1,8 +1,8 @@
 @import "../utils/variables";
 .about {
   padding: 40px 28px;
-  background: $page-bg;
-  color: $text-color;
+  background: $white;
+  color: $black;
   font-family: $font-family;
 
   &__top {
@@ -45,7 +45,7 @@
   &__title {
     font-size: 36px;
     font-weight: 800;
-    color: $title-color;
+    color: $black;
     margin-bottom: 8px;
   }
 
@@ -58,7 +58,7 @@
 
   &__text {
     line-height: 1.8;
-    color: $text-color;
+    color: $black;
 
     &--bigger {
       font-size: 18px;
@@ -85,14 +85,14 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 
     &--primary {
-      background: $accent;
-      color: white;
+      background: $grean-dark;
+      color: $white;
     }
 
     &--ghost {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(0, 0, 0, 0.05);
-      color: $text-color;
+      color: $black;
     }
 
     &:hover {
@@ -102,17 +102,17 @@
   }
 
   &__services {
-    background: $dark-section-bg;
+    background: $navy;
     padding: 40px 32px;
     border-radius: 8px;
-    color: $light-text;
+    color: $white;
     text-align: center;
   }
 
   &__services-title {
     font-size: 26px;
     font-weight: 800;
-    color: $light-text;
+    color: $white;
     margin-bottom: 8px;
   }
 
@@ -165,7 +165,7 @@
     &-title {
       font-size: 15px;
       font-weight: 700;
-      color: $light-text;
+      color: $white;
       margin-bottom: 8px;
     }
 

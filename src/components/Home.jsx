@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import About from "./About";
 import Contact from "./Contact";
-import foto from "../img/foto.jpg";
+import foto from "../img/garden.jpg";
+import foto2 from "../img/machine.jpg";
 
 export default function Home(){ 
 const [years, setYears] = useState(0); // licznik 0 -> 8
@@ -63,6 +64,24 @@ const [years, setYears] = useState(0); // licznik 0 -> 8
     }
     requestAnimationFrame(stepClients);
   }
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [foto, foto2]; // tablica zdjęć
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage(prev => (prev + 1) % images.length);
+    }, 6000); // zmiana co 3 sekundy
+
+    return () => clearInterval(interval); // czyszczenie przy odmontowaniu
+  }, []);
+
+   const prevImage = () => {
+    setCurrentImage(prev => (prev - 1 + images.length) % images.length);
+  };
+
+  const nextImage = () => {
+    setCurrentImage(prev => (prev + 1) % images.length);
+  };
 
   return (
     <>
@@ -70,10 +89,9 @@ const [years, setYears] = useState(0); // licznik 0 -> 8
       <div className="home__hero">
         <div className="home__hero-inner">
           <div className="home__text">
-            <h1 className="home__title">Roboty Ziemne</h1>
+            <h1 className="home__title">Realizacja ogrodów Warsztat i Wynajem Sprzętu </h1>
             <p className="home__subtitle">
-              Oferujemy profesjonalne roboty ziemne i wykopy, które zapewnią
-              stabilne fundamenty dla Twojej inwestycji.
+              Dostarczamy nowoczesny sprzęt i kompleksowe wsparcie dla Twoich projektów. Od wynajmu maszyn, przez serwis i naprawy w naszym warsztacie, po realizację ogrodów – wszystko, czego potrzebujesz, w jednym miejscu
             </p>
             <div className="home__cta">
               <button className="home__btn home__btn--primary">Poznaj ofertę</button>
@@ -81,7 +99,17 @@ const [years, setYears] = useState(0); // licznik 0 -> 8
             </div>
           </div>
           <div className="home__hero-media">
-            <img src={foto} alt="Maszyna budowlana" className="home__hero-image" />
+            <img
+                src={images[currentImage]}
+                alt="Maszyna budowlana"
+                className="home__hero-image"
+              />
+              <button className="home__hero-arrow home__hero-arrow--left" onClick={prevImage}>
+    ◀
+  </button>
+  <button className="home__hero-arrow home__hero-arrow--right" onClick={nextImage}>
+    ▶
+  </button>
           </div>
         </div>
 
@@ -89,16 +117,6 @@ const [years, setYears] = useState(0); // licznik 0 -> 8
 
       <div className="home__features">
         <div className="home__container">
-          <article className="home__feature home__feature--counter">
-            <div className="home__feature-top">
-              <div className="home__counter" aria-live="polite" aria-atomic="true">
-                <span className="home__counter-number">{years}</span>
-                <span className="home__counter-suffix"> {years >= 8 ? "" : ""}</span>
-              </div>
-            </div>
-            <h3 className="home__feature-title">Doświadczenie</h3>
-            <p className="home__feature-desc">8 lat doświadczenia</p>
-          </article>
 
           <article className="home__feature">
             <div className="home__feature-top">
@@ -116,6 +134,17 @@ const [years, setYears] = useState(0); // licznik 0 -> 8
             </div>
             <h3 className="home__feature-title">Własny sprzęt</h3>
             <p className="home__feature-desc">Inwestujemy w najlepsze technologie dla optymalnych wyników.</p>
+          </article>
+
+          <article className="home__feature home__feature--counter">
+            <div className="home__feature-top">
+              <div className="home__counter" aria-live="polite" aria-atomic="true">
+                <span className="home__counter-number">{years}</span>
+                <span className="home__counter-suffix"> {years >= 8 ? "" : ""}</span>
+              </div>
+            </div>
+            <h3 className="home__feature-title">Doświadczenie</h3>
+            <p className="home__feature-desc">8 lat doświadczenia</p>
           </article>
 
           <article className="home__feature home__feature--counter">

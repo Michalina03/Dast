@@ -1,56 +1,14 @@
-// =======================
 // Kolory bazowe
-// =======================
 $white: #FFFFFF;
 $black: #000000;
-
-// =======================
-// Kolory marki / akcenty
-// =======================
-$primary-color: #2F5D50;
-$secondary-color: #5FA57D;
-$accent-color: #B6A480;
-$brand-green: #2F3E2F;
-$brand-green-dark: #1E4F28;
-$accent: #ff6600;          // pomarańczowy akcent przy przyciskach
-$accent-shadow: #ffad59;   // cień dla akcentu
-$hover-color: #3F7C67;     // kolor przy hoverach
-$btn-color: #111827;
-
-// =======================
-// Neutralne i tła
-// =======================
-$page-bg: #FFFFFF;          // tło strony
-$bg-light: #f9f9f9;         // jasne tło
-$bg-soft: #e2fcdd;          // delikatne tło sekcji
-$dark-section-bg: #222326;  // ciemne tło sekcji
-$card-bg: #FFFFFF;          // tło kart
-$footer-bg-color: #3e463e;
-$footer-text-color: #cfcfcf;
-$white-beige: #F5F2ED;
-$beige: #B89B7D;
-$beige-lite: #E0D8C3;
-
-// =======================
-// Teksty i typografia
-// =======================
-$text-color: #111827;       // główny tekst
-$text-dark: #1E1E1E;        // ciemniejszy tekst
-$text-muted: #6B6B6B;       // opisowy tekst
-$title-color: #0b1220;      // kolory tytułów
-$text-on-hero: #ffffff;     // tekst na hero
-$light-text: #f3f4f6;       // jasny tekst w ciemnych sekcjach
-$muted: #6b7280;  
-$logo:$accent;           // teksty opisowe, subtelne
-$hero-gradient-from:$accent;
-$hero-gradient-to:$accent;
-// ======================
-// Cienie
-// =======================
+$grean:#C7D3B2;
+$grean-dark:#8F9777;
 $shadow-color: rgba(0, 0, 0, 0.08);
-
+$muted: #6b7280; 
 $warm-brown: #9F7A45;
-$warm-brown-hover: #B48C5C;
+$warm-brown-hover: #C89E6F;
+$navy: #111827;
+
 
 // Rozmiary
 $header-height: 12vh;
