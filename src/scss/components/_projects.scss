@@ -1,0 +1,112 @@
+@import "../utils/variables";
+.realizations {
+  background: $white;
+  width: 100%;
+  overflow: hidden;
+  margin-top: $header-height;
+
+  &__section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50vh;
+    padding: 48 $sp-4;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity $transition-slow, transform $transition-slow;
+    position: relative;
+    background: $white;
+
+    &--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &--normal {
+      flex-direction: row;
+    }
+
+    &--reverse {
+      flex-direction: row-reverse;
+    }
+
+    // geometryczne tło akcentowe
+    &::before {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      width: 90%;
+      height: 80%;
+      background: linear-gradient(135deg, rgba($grean, 0.08), rgba($warm-brown, 0.08));
+      z-index: 0;
+      border-radius: 24px;
+    }
+  }
+
+  &__image {
+    flex: 1;
+    max-width: 35%;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px $shadow-color;
+      transition: transform $transition-fast;
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+  &__info {
+    flex: 0 1 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+
+  &__box {
+    background: $grean-dark;
+    color: $white;
+    border-radius: 12px;
+    padding: $sp-4;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    font-family: $font-ui;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      right: -10px;
+      width: 40px;
+      height: 40px;
+      background: $warm-brown;
+      border-radius: 8px;
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+  }
+
+  &__title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: $sp-2;
+  }
+
+  &__desc {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: $sp-2;
+  }
+
+  &__meta {
+    font-size: 0.9rem;
+    color: rgba($white, 0.85);
+  }}

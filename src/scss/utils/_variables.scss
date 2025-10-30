@@ -9,6 +9,8 @@ $warm-brown: #9F7A45;
 $warm-brown-hover: #C89E6F;
 $navy: #111827;
 
+$icon-size-desktop: 60px;
+$icon-size-mobile: 50px;
 
 // Rozmiary
 $header-height: 12vh;
@@ -34,3 +36,15 @@ $font-ui: "Inter", "Segoe UI", Roboto, system-ui;
 $sp-1: 8px;
 $sp-2: 12px;
 $sp-3: 16px;
+$sp-4: 32px;
+
+$timeline-max-width: 1200px;
+$timeline-line-width: 4px;
+$project-item-min-height: 50vh; // każda sekcja ma ~połowę wysokości ekranu
+$project-image-width-desktop: 45%;
+$project-content-width: 260px;
+$project-accent-size: 28px;
+$project-image-radius: 12px;
+$project-box-bg: $grean-dark;
+$project-box-color: $white;
+$project-fade-offset: 50px;
