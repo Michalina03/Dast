@@ -26,7 +26,7 @@ function About() {
       });
     },
     {
-      threshold: 0.15, // licznik uruchamia się, gdy sekcja w 30% widoczna
+      threshold: 0.1, // licznik uruchamia się, gdy sekcja w 30% widoczna
     }
   );
 
@@ -109,20 +109,10 @@ function About() {
 
         <div className="about__content">
           <h2 id="about-title" className="about__title">O naszej firmie</h2>
-          <p className="about__eyebrow">Usługi budowlane i transportowe · Mazowieckie</p>
+          <p className="about__eyebrow">Realizacja ogrodów, warsztat, sprzęt na wynajem · Mazowieckie</p>
 
           <div className="about__text about__text--bigger">
-            <p>
-              Nasza firma specjalizuje się w wyburzeniach, rozbiórkach, wykopach,
-              budowie i utwardzaniu nawierzchni, usługach sprzętem ciężkim oraz
-              transporcie materiałów sypkich. Działamy szybko, sprawnie i zawsze
-              z naciskiem na bezpieczeństwo i terminowość.
-            </p>
-            <p>
-              Oferujemy kompleksowe wsparcie inwestycyjne – od doradztwa technicznego,
-              przez prace ziemne, po transport i sprzedaż materiałów. Dzięki własnemu
-              zapleczu sprzętowemu realizujemy zlecenia niezależnie od skali projektu.
-            </p>
+            <p> Nasza firma specjalizuje się w realizacji ogrodów – od projektu po pełne wykonanie. Tworzymy estetyczne i funkcjonalne przestrzenie zielone, dopasowane do potrzeb klientów, z wykorzystaniem nowoczesnych technologii i sprawdzonych rozwiązań. </p> <p> Posiadamy własny warsztat, w którym dbamy o profesjonalny serwis i utrzymanie naszego sprzętu w doskonałej kondycji. Dzięki temu możemy gwarantować niezawodność i wysoką jakość realizowanych prac. </p> <p> Oferujemy również wynajem sprzętu ogrodniczego i budowlanego. Dysponujemy szeroką gamą maszyn i narzędzi, które pozwalają na sprawną realizację zarówno mniejszych, jak i dużych projektów terenowych. </p>
           </div>
 
           <div className="about__actions">
@@ -150,7 +140,7 @@ function About() {
           <div className="about-references__header">
             <h2 className="about-references__title">Referencje</h2>
             <p className="about-references__subtitle">
-              Agencja Interaktywna SEO/SEM – Opinie i referencje Klientów
+              Dast – Opinie i referencje Klientów
             </p>
           </div>
 
