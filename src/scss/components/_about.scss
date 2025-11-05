@@ -1,10 +1,12 @@
 @import "../utils/variables";
+
 .about {
   padding: 40px 28px;
   background: $white;
   color: $black;
   font-family: $font-family;
 
+  /* -------------------- TOP SECTION -------------------- */
   &__top {
     display: flex;
     align-items: center;
@@ -22,7 +24,7 @@
   &__image {
     width: 100%;
     max-width: 480px;
-    aspect-ratio: 2.5 / 3; // zmieniony proporcjonalnie
+    aspect-ratio: 2.5 / 3;
     object-fit: cover;
     border-radius: 12px;
     box-shadow: 0 14px 32px rgba($shadow-color, 0.15);
@@ -101,8 +103,9 @@
     }
   }
 
- &__features {
-    margin:60px 0 80px;
+  /* -------------------- FEATURES SECTION -------------------- */
+  &__features {
+    margin: 60px 0 80px;
   }
 
   &__container {
@@ -158,10 +161,6 @@
     transition: transform 180ms ease;
   }
 
-  &:hover .home__feature-photo {
-    transform: translateY(-4px);
-  }
-
   &__counter {
     display: inline-flex;
     align-items: baseline;
@@ -181,42 +180,8 @@
     font-size: 14px;
     color: $muted;
   }
-  // RESPONSYWNOŚĆ
-  @media (max-width: $breakpoint-tablet) {
-    &__container {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
 
-  @media (max-width: $breakpoint-mobile) {
-    &__container {
-      grid-template-columns: 1fr;
-    }
-
-    &__feature {
-      padding: $sp-2;
-    }
-
-    &__icon {
-      width: $icon-size-mobile;
-      height: $icon-size-mobile;
-    }
-
-    &__feature-title {
-      font-size: 1.125rem; // mniejsza czcionka
-    }
-
-    &__feature-desc {
-      font-size: 0.875rem;
-    }
-
-    &__counter {
-      font-size: 2rem;
-    }
-  }
-
-
-
+  /* -------------------- SERVICES SECTION -------------------- */
   &__services {
     background: $navy;
     padding: 40px 32px;
@@ -251,6 +216,7 @@
     transition: transform 0.2s ease;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 
     &:hover {
       transform: translateY(-6px);
@@ -270,7 +236,7 @@
       transition: transform 0.4s ease;
     }
 
-    &:hover .about__card-image {
+    &:hover &-image {
       transform: scale(1.05);
     }
 
@@ -298,6 +264,7 @@
     }
   }
 
+  /* -------------------- RESPONSIVE -------------------- */
   @media (max-width: 1024px) {
     &__top {
       flex-direction: column;
@@ -317,6 +284,10 @@
     }
 
     &__services-inner {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    &__container {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -346,5 +317,75 @@
     &__services-inner {
       grid-template-columns: 1fr;
     }
+
+    &__container {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* -------------------- REFERENCES SECTION -------------------- */
+.about-references {
+  padding: 6rem 2rem;
+  background-color: $sand;
+  text-align: center;
+  border-radius: 8px;
+
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    margin-bottom: 3rem;
+  }
+
+  &__title {
+    font-family: $font-family;
+    font-size: $font-size-heading;
+    color: $black;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitle {
+    font-family: $font-family;
+    font-size: $font-size-base;
+    color: $muted;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+
+    @media (max-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    background-color: $warm-brown;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 0.3rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    object-fit: cover;
   }
 }

@@ -1,6 +1,7 @@
-import foto from "../img/foto.jpg";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import foto from "../img/foto.jpg";
+import refe from "../img/Referencje_wzór.png";
 
 function About() {
   const [years, setYears] = useState(0);
@@ -9,50 +10,50 @@ function About() {
   const startedRef = useRef(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) {
-      startCounters();
-      return;
+ useEffect(() => {
+  const el = sectionRef.current;
+  if (!el) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !startedRef.current) {
+          startedRef.current = true;
+          startCounters();
+          observer.unobserve(el); // ✅ poprawione
+        }
+      });
+    },
+    {
+      threshold: 0.3, // licznik uruchamia się, gdy sekcja w 30% widoczna
     }
+  );
 
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !startedRef.current) {
-            startedRef.current = true;
-            startCounters();
-            obs.disconnect();
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
+  observer.observe(el); // ✅ poprawione
 
-    obs.observe(el);
-
-    return () => obs.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  return () => observer.disconnect();
+}, []);
 
   function startCounters() {
-    const durationYears = 900;
+    // animacja liczby lat
+    const durationYears = 1000;
     const startTime = performance.now();
+
     function stepYears(now) {
       const t = Math.min(1, (now - startTime) / durationYears);
-      const value = Math.floor(t * 8);
-      setYears(value);
+      setYears(Math.floor(t * 8));
       if (t < 1) requestAnimationFrame(stepYears);
       else setYears(8);
     }
     requestAnimationFrame(stepYears);
 
+    // animacja liczby klientów
     const durationClients = 1400;
     const startTime2 = performance.now();
+
     function stepClients(now) {
       const t = Math.min(1, (now - startTime2) / durationClients);
-      const value = Math.floor(t * 100);
-      setClients(value);
+      setClients(Math.floor(t * 100));
       if (t < 1) requestAnimationFrame(stepClients);
       else setClients(100);
     }
@@ -96,6 +97,8 @@ function About() {
     },
   ];
 
+  const references = [refe, refe, refe, refe];
+
   return (
     <section className="about" aria-labelledby="about-title" ref={sectionRef}>
       <div className="about__top">
@@ -123,7 +126,30 @@ function About() {
 
           <div className="about__actions">
             <button className="about__btn about__btn--primary">Zobacz ofertę</button>
-            <button className="about__btn about__btn--ghost">Sprawdź materiały</button>
+            <button className="about__btn about__btn--ghost">Zadzwoń</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="about-references">
+        <div className="about-references__container">
+          <div className="about-references__header">
+            <h2 className="about-references__title">Referencje</h2>
+            <p className="about-references__subtitle">
+              Agencja Interaktywna SEO/SEM – Opinie i referencje Klientów
+            </p>
+          </div>
+
+          <div className="about-references__grid">
+            {references.map((item, index) => (
+              <div className="about-references__item" key={index}>
+                <img
+                  src={item}
+                  alt={`Referencja ${index + 1}`}
+                  className="about-references__image"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -160,7 +186,9 @@ function About() {
             <div className="about__feature-top">
               <div className="about__counter">
                 <span className="about__counter-number">{clients}</span>
-                <span className="about__counter-suffix">{clients >= 100 ? "+" : ""}</span>
+                <span className="about__counter-suffix">
+                  {clients >= 100 ? "+" : ""}
+                </span>
               </div>
             </div>
             <h3 className="about__feature-title">Zadowoleni klienci</h3>

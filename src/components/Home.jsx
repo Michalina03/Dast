@@ -10,6 +10,29 @@ export default function Home(){
   // Refs to control animation (start once when visible)
   const sectionRef = useRef(null);
   const startedRef = useRef(false);
+
+  function startCounters() {
+  const counters = document.querySelectorAll(".counter");
+  counters.forEach((counter) => {
+    const updateCount = () => {
+      const target = +counter.getAttribute("data-target");
+      const count = +counter.innerText;
+      const speed = 200; // im większa liczba, tym wolniej
+
+      const increment = target / speed;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 10);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+}
+
+
  useEffect(() => {
       // IntersectionObserver żeby uruchomić liczniki gdy komponent wejdzie w viewport
       const el = sectionRef.current;

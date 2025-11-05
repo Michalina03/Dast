@@ -1,4 +1,5 @@
 @import "../utils/variables";
+
 .realizations {
   background: $white;
   width: 100%;
@@ -10,7 +11,7 @@
     justify-content: space-between;
     align-items: center;
     min-height: 50vh;
-    padding: 48 $sp-4;
+    padding: 48px $sp-4;
     opacity: 0;
     transform: translateY(60px);
     transition: opacity $transition-slow, transform $transition-slow;
@@ -30,7 +31,6 @@
       flex-direction: row-reverse;
     }
 
-    // geometryczne tło akcentowe
     &::before {
       content: "";
       position: absolute;
@@ -109,4 +109,96 @@
   &__meta {
     font-size: 0.9rem;
     color: rgba($white, 0.85);
-  }}
+  }
+
+  /* ✅ RESPONSYWNOŚĆ */
+  @media (max-width: 992px) {
+    &__section {
+      flex-direction: column;
+      text-align: center;
+      padding: $sp-4;
+      min-height: auto;
+
+      &::before {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+      }
+    }
+
+    &__image {
+      max-width: 100%;
+      margin-bottom: $sp-3;
+
+      img {
+        border-radius: 12px;
+        box-shadow: 0 6px 16px $shadow-color;
+      }
+    }
+
+    &__info {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__box {
+      padding: $sp-3;
+      border-radius: 10px;
+
+      &::after {
+        display: none; // ukrywamy ozdobny element na małych ekranach
+      }
+    }
+
+    &__title {
+      font-size: 1.2rem;
+    }
+
+    &__desc {
+      font-size: 0.95rem;
+    }
+  }
+
+  /* ✅ Jeszcze lepsze dopasowanie do telefonów */
+  @media (max-width: 600px) {
+    &__section {
+      padding: $sp-3;
+    }
+
+    &__title {
+      font-size: 1.1rem;
+    }
+
+    &__desc {
+      font-size: 0.9rem;
+    }
+
+    &__box {
+      padding: $sp-2;
+      border-radius: 8px;
+    }
+
+    &__image img {
+      border-radius: 10px;
+    }
+  }
+  @media (max-width: 768px) {
+  .realizations__section {
+    background: $white;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    box-shadow: 0 6px 20px rgba($black, 0.08);
+    border: 1px solid rgba($black, 0.08);
+  }
+
+  .realizations__image img {
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba($black, 0.1);
+  }
+}
+
+}

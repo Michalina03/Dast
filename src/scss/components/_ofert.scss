@@ -1,0 +1,258 @@
+@import "../utils/variables";
+.services {
+  margin-top: $header-height;
+  font-family: $font-family;
+  color: $navy;
+  background-color: $sand;
+  padding: $sp-4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &__intro {
+    margin-bottom: $sp-4;
+
+    & > .services__subtitle {
+      color: $warm-brown;
+      font-size: $font-size-subheading;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    & > .services__title {
+      font-size: $font-size-heading;
+      margin-top: $sp-2;
+    }
+  }
+
+  &__cards {
+  display: flex;
+  justify-content: center;
+  gap: $sp-4;
+  flex-wrap: wrap;
+  margin-bottom: $sp-4;
+}
+
+/* KARTA */
+&__card {
+  background-color: $white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px $shadow-color;
+  width: 300px;
+  padding: $sp-3;
+  transition: transform $transition-fast;
+  cursor: pointer;
+
+  /* 👇 najważniejsze – układ kolumnowy, przycisk na dole */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &-title {
+    font-size: 1.25rem;
+    margin-top: $sp-2;
+    color: $navy;
+    font-weight: 500;
+  }
+
+  &-text {
+    color: $muted;
+    margin: $sp-2 0;
+    flex-grow: 1; /* 👈 tekst się rozciąga, żeby wyrównać karty */
+  }
+}
+
+/* OBRAZEK */
+&__image {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* PRZYCISK */
+&__button {
+  background-color: $warm-brown;
+  color: $white;
+  border: none;
+  padding: $sp-2 $sp-3;
+  border-radius: 24px;
+  transition: background-color $transition-fast;
+  justify-content: center;
+
+  &:hover {
+    background-color: $warm-brown-hover;
+  }
+
+  &--accent {
+    background-color: $warm-brown;
+
+    &:hover {
+      background-color: $warm-brown-hover;
+      color: $black;
+    }
+  }
+}
+
+
+   &__gift {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $sp-4;
+    background-color: $white;
+    border-radius: 16px;
+    padding: $sp-4;
+    box-shadow: 0 2px 8px $shadow-color;
+    margin-bottom: $sp-4;
+
+    &-content {
+      flex: 1;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &-image {
+      flex: 1;
+
+      img {
+        width: 100%;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+    }
+
+    &-title {
+      font-size: $font-size-heading;
+      color: $navy;
+      font-weight: 600;
+      margin-bottom: $sp-3;
+      font-family: $font-family;
+    }
+
+    &-text {
+      color: $muted;
+      font-family: $font-family;
+      font-size: $font-size-base;
+      line-height: 1.7;
+      letter-spacing: 0.3px;
+      text-align: justify;
+
+      &--title {
+        font-weight: 600;
+        color: $warm-brown;
+        margin-bottom: $sp-1;
+        font-size: 1.1rem;
+        line-height: 1.4;
+      }
+
+      &--paragraph {
+        margin-bottom: $sp-3;
+        color: $muted;
+        font-size: $font-size-base;
+        line-height: 1.6;
+        text-align: justify;
+        transition: color $transition-fast, transform $transition-slow;
+      }
+
+      // delikatne ożywienie przy hoverze całego boxa
+      .services__gift:hover &--paragraph {
+        color: $navy;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: $breakpoint-tablet) {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        text-align: left;
+
+        &--title {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: $breakpoint-mobile) {
+        font-size: 0.9rem;
+        line-height: 1.45;
+        text-align: left;
+
+        &--title {
+          font-size: 0.95rem;
+        }
+      }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+      flex-direction: column;
+      text-align: center;
+
+      &-image {
+        order: -1; // obrazek nad tekstem
+        width: 100%;
+      }
+
+      &-content {
+        width: 100%;
+        align-items: center;
+      }
+    }
+  }
+
+  &__popular {
+    text-align: center;
+    width: 100%;
+
+    &-title {
+      font-size: $font-size-subheading;
+      margin-bottom: $sp-3;
+    }
+  }
+  &__popular {
+    text-align: center;
+    width: 100%;
+
+    &-title {
+      font-size: $font-size-subheading;
+      margin-bottom: $sp-3;
+    }
+
+  }
+
+  /* Responsywność */
+  @media (max-width: $breakpoint-tablet) {
+    &__gift {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    &__cards {
+      gap: $sp-3;
+    }
+
+    &__card {
+      width: 260px;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $sp-3;
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__card {
+      width: 100%;
+    }
+
+    &__gallery-item {
+      width: 45%;
+    }
+  }
+}

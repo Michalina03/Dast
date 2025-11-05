@@ -8,7 +8,7 @@ function Contact() {
       <div className="contact__map">
         <iframe
           title="Mapa Google - APA Group"
-          src="https://www.google.com/maps?q=Leszno+4E,+06-300+Przasnysz&output=embed"
+          src="https://www.google.com/maps?q=Borowe-Gryki+11,+06-316+Borowe-Chrzczany&output=embed"  
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -35,7 +35,6 @@ function Contact() {
       </svg>
     </div>
     <div>
-      <p>Leszno 4E, 06-300 Przasnysz</p>
       <p>06-316 Borowe-Gryki</p>
     </div>
   </div>
