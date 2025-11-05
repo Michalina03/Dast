@@ -9,6 +9,7 @@ function About() {
   const sectionRef = useRef(null);
   const startedRef = useRef(false);
   const navigate = useNavigate();
+  const phone = "+48 505 357 689";
 
  useEffect(() => {
   const el = sectionRef.current;
@@ -25,7 +26,7 @@ function About() {
       });
     },
     {
-      threshold: 0.3, // licznik uruchamia się, gdy sekcja w 30% widoczna
+      threshold: 0.15, // licznik uruchamia się, gdy sekcja w 30% widoczna
     }
   );
 
@@ -125,8 +126,21 @@ function About() {
           </div>
 
           <div className="about__actions">
-            <button className="about__btn about__btn--primary">Zobacz ofertę</button>
-            <button className="about__btn about__btn--ghost">Zadzwoń</button>
+            <button
+        className="about__btn about__btn--primary"
+        onClick={() => navigate("/oferta")}
+        aria-label="Zobacz ofertę"
+      >
+        Zobacz ofertę
+      </button>
+
+      <button
+        className="about__btn about__btn--ghost"
+        onClick={() => window.location.href = `tel:${phone}`}
+        aria-label="Zadzwoń"
+      >
+        Zadzwoń
+      </button>
           </div>
         </div>
       </div>
