@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../img/logo.jpg";
+import logo from "../img/logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,6 @@ export default function Header() {
       <div className="header__container">
         <div className="header__logo">
           <img src={logo} alt="Logo Dast" className="header__logo__img" />
-          <h1 className="header__title">Dast</h1>
         </div>
 
         <button className="header__hamburger" onClick={toggleMenu}>

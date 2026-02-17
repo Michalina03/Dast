@@ -25,22 +25,13 @@
   /* LOGO + TYTUŁ */
   &__logo {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+   
 
     &__img {
-      width: 70px;   // większe logo
-      height: 70px;
+      width: 85px;   // większe logo
+      height: 85px;
       object-fit: cover;
     }
-  }
-
-  &__title {
-    font-size: 2rem;   // większy tytuł
-    font-weight: 600;
-    color:$warm-brown;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
   }
 
   /* NAWIGACJA */

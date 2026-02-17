@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../img/logo2.jpg"
+import logo from "../img/logo.png"
 
 function Contact() {
   return (

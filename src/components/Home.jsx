@@ -3,62 +3,69 @@ import About from "./About";
 import Contact from "./Contact";
 import foto from "../img/garden.jpg";
 import foto2 from "../img/machine.jpg";
-import unia from "../img/unia.jpg";
 
 export default function Home(){ 
 
   // Refs to control animation (start once when visible)
   const sectionRef = useRef(null);
   const startedRef = useRef(false);
+  
+  const [years, setYears] = useState(0);
+  const [clients, setClients] = useState(0);
 
-  function startCounters() {
-  const counters = document.querySelectorAll(".counter");
-  counters.forEach((counter) => {
-    const updateCount = () => {
-      const target = +counter.getAttribute("data-target");
-      const count = +counter.innerText;
-      const speed = 200; // im większa liczba, tym wolniej
 
-      const increment = target / speed;
-
-      if (count < target) {
-        counter.innerText = Math.ceil(count + increment);
-        setTimeout(updateCount, 10);
-      } else {
-        counter.innerText = target;
+   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !startedRef.current) {
+            startedRef.current = true;
+            startCounters();
+            observer.unobserve(el); // ✅ poprawione
+          }
+        });
+      },
+      {
+        threshold: 0.1, // licznik uruchamia się, gdy sekcja w 30% widoczna
       }
-    };
-    updateCount();
-  });
-}
-
-
- useEffect(() => {
-      // IntersectionObserver żeby uruchomić liczniki gdy komponent wejdzie w viewport
-      const el = sectionRef.current;
-      if (!el) {
-        startCounters(); // fallback
-        return;
+    );
+  
+    observer.observe(el); // ✅ poprawione
+  
+    return () => observer.disconnect();
+  }, []);
+  
+    function startCounters() {
+      // animacja liczby lat
+      const durationYears = 1000;
+      const startTime = performance.now();
+  
+      function stepYears(now) {
+        const t = Math.min(1, (now - startTime) / durationYears);
+        setYears(Math.floor(t * 8));
+        if (t < 1) requestAnimationFrame(stepYears);
+        else setYears(8);
       }
+      requestAnimationFrame(stepYears);
   
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !startedRef.current) {
-              startedRef.current = true;
-              startCounters();
-              obs.disconnect();
-            }
-          });
-        },
-        { threshold: 0.25 }
-      );
+      // animacja liczby klientów
+      const durationClients = 1400;
+      const startTime2 = performance.now();
   
-      obs.observe(el);
+      function stepClients(now) {
+        const t = Math.min(1, (now - startTime2) / durationClients);
+        setClients(Math.floor(t * 100));
+        if (t < 1) requestAnimationFrame(stepClients);
+        else setClients(100);
+      }
+      requestAnimationFrame(stepClients);
+    }
   
-      return () => obs.disconnect();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+
+
 
   const [currentImage, setCurrentImage] = useState(0);
   const images = [foto, foto2]; // tablica zdjęć
@@ -83,17 +90,6 @@ export default function Home(){
     <>
     <section className="home" ref={sectionRef} aria-label="Sekcja główna">
       <div className="home__hero">
-        <div className="home__hero-inner">
-          <div className="home__text">
-            <h1 className="home__title">Realizacja ogrodów - Warsztat  Wynajem Sprzętu </h1>
-            <p className="home__subtitle">
-              Dostarczamy nowoczesny sprzęt i kompleksowe wsparcie dla Twoich projektów. Od wynajmu maszyn, przez serwis i naprawy w naszym warsztacie, po realizację ogrodów – wszystko, czego potrzebujesz, w jednym miejscu
-            </p>
-            {/* <div className="home__cta">
-              <button className="home__btn home__btn--primary">Poznaj ofertę</button>
-              <button className="home__btn home__btn--outline">Zadzwoń: 577 573 985</button>
-            </div> */}
-          </div>
           <div className="home__hero-media">
             <img
                 src={images[currentImage]}
@@ -108,13 +104,68 @@ export default function Home(){
   </button>
           </div>
         </div>
-      </div>
-      <div className="home__flags">
-       <img
-        src={unia}
-        alt="Unia Europejska - Europejski Fundusz Rozwoju Regionalnego"
-        className="home__flags-image"
-        />
+
+
+      <div className="home__features">
+        <div className="home__container">
+          <article className="home__feature">
+            <div className="home__feature-top">
+              <svg
+                className="home__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 13h2v6H3zM19 5h2v14h-2zM7 9h2v10H7zM13 3h2v16h-2z" />
+              </svg>
+            </div>
+            <h3 className="home__feature-title">Własny sprzęt</h3>
+            <p className="home__feature-desc">
+              Inwestujemy w najlepsze technologie dla optymalnych wyników.
+            </p>
+          </article>
+
+          <article className="home__feature home__feature--counter">
+            <div className="home__feature-top">
+              <div className="home__counter">
+                <span className="home__counter-number">{years}</span>
+                <span className="home__counter-suffix">
+                  {years >= 8 ? "   lat" : ""}
+                </span>
+              </div>
+            </div>
+            <h3 className="home__feature-title">Doświadczenie</h3>
+            <p className="home__feature-desc">8 lat doświadczenia</p>
+          </article>
+
+          <article className="home__feature home__feature--counter">
+            <div className="home__feature-top">
+              <div className="home__counter">
+                <span className="home__counter-number">{clients}</span>
+                <span className="home__counter-suffix">
+                  {clients >= 100 ? "+" : ""}
+                </span>
+              </div>
+            </div>
+            <h3 className="home__feature-title">Zadowoleni klienci</h3>
+            <p className="home__feature-desc">100+ zadowolonych klientów</p>
+          </article>
+
+          <article className="home__feature">
+            <div className="home__feature-top">
+              <svg
+                className="home__icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 2L15 8l6 .5-4.5 3.5L18 20l-6-4-6 4 1.5-8L3 8.5 9 8z" />
+              </svg>
+            </div>
+            <h3 className="home__feature-title">Kompleksowe usługi</h3>
+            <p className="home__feature-desc">
+              Pełny zakres usług z gwarancją spokoju ducha.
+            </p>
+          </article>
+        </div>
       </div>
     </section>
 

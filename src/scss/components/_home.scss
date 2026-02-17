@@ -2,94 +2,27 @@
 .home {
   font-family: $font-family;
   color: $black;
-  padding: 28px;
   background: $white;
-  height: 88vh;
+  /* na desktopie zostawiamy wysokość jak wcześniej lub auto */
+  height: auto;
   margin-top: 12vh;
   text-align: center;
 
   &__hero {
-    background: $grean;
-    border-radius: 12px;
-    padding: 28px;
-    box-shadow: 0 6px 20px rgba($shadow-color, 0.08);
-    margin-bottom: 28px;
+    height: 50vh;
+    width: 100%;
+    /* pozwól, żeby hero trzymał normalny flow */
     position: relative;
     overflow: hidden;
-    &-inner {
-      display: flex;
-      align-items: center;
-      gap: 150px;
-      height: 40vh;
-    }
-  }
-
-  &__text {
-    flex: 1 1 55%;
-    max-width: 60ch;
-    color: $white;
-    line-height: 1.4;
-  }
-
-  &__title {
-    margin: 0;
-    font-size: 32px;
-    line-height: 1.05;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: $black;
-    
-  }
-
-  &__subtitle {
-    margin-top: 8px;
-    margin-bottom: 18px;
-    color: $muted;
-    font-size: 15px;
-  }
-
-  &__cta {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center
-  }
-
-  &__btn {
-    border: 0;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-weight: 700;
-    
-    cursor: pointer;
-    transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
-    box-shadow: 0 4px 10px rgba($shadow-color, 0.06);
-    background: transparent;
-    color: $black;
-    outline: none;
-
-    &--primary {
-      background:$grean-dark;
-      color:$white;
-    }
-
-    &--outline {
-      border: 1px solid rgba($muted, 0.14);
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    &:hover,
-    &:focus {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 18px rgba($shadow-color, 0.12);
-    }
   }
 
   &__hero-media {
-    width: 45%;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: flex-end;
-    position: relative
+    position: relative;
+    align-items: center;
   }
 
   &__hero-arrow {
@@ -106,36 +39,57 @@
     justify-content: center;
     cursor: pointer;
     font-size: 18px;
-    color: $grean-dark;
     transition: background 0.2s ease, transform 0.2s ease;
-    
+    z-index: 5;
+
     &:hover {
       background: rgba($white, 0.9);
       transform: translateY(-50%) scale(1.1);
     }
 
     &--left {
-      left: -18px; // trochę na zewnątrz zdjęcia
+      left: -1px; // desktop: lekko na zewnątrz
     }
 
     &--right {
-      right: -18px; // trochę na zewnątrz zdjęcia
+      right: -1px; // desktop: lekko na zewnątrz
     }
   }
 
   &__hero-image {
-    width: 90vh;
-    max-width: 90vh;
-    border-radius: 12px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    height: 37vh;
     box-shadow: 0 10px 30px rgba($shadow-color, 0.12);
+    display: block;
+  }
+
+  /* przykładowe kafle (jeśli masz grid kafelków poniżej hero) */
+  &__tiles {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    /* domyślnie nie nachodzą na nic — statyczny flow */
+    position: relative;
+    z-index: 1;
+  }
+
+  &__tile {
+    background: $white;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba($shadow-color, 0.08);
+    padding: 12px;
+    min-height: 100px;
   }
 
   &__dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     margin-top: 14px;
   }
 
@@ -148,49 +102,95 @@
     transition: transform 220ms ease, background 220ms ease;
   }
 
-    &__flags {
-    width: 100%;
+
+  
+ &__features {
+    margin: 60px 0 80px;
+    height: 40%;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  &__feature {
+    background: $white;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba($shadow-color, 0.04);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    position: relative;
+    overflow: hidden;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
+    flex-direction: column;
+    gap: 12px;
 
-    &-image {
-      width: 90%;
-      max-width: 1200px;
-      height: auto;
-      display: block;
-      border: none;
-      border-radius: 0;
-      object-fit: contain;
-      background: transparent;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 36px rgba($shadow-color, 0.08);
+    }
 
-      @media (max-width: $breakpoint-tablet) {
-        width: 95%;
-        max-width: 700px;
-      }
+    &-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+    }
 
-      @media (max-width: $breakpoint-mobile) {
-        width: 100%;
-        max-width: 500px;
-      }
+    &-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    &-desc {
+      margin: 0;
+      font-size: 13px;
+      color: $muted;
     }
   }
 
+  &__icon {
+    width: 50px;
+    height: 50px;
+    fill: $warm-brown;
+    opacity: 0.95;
+    transition: transform 180ms ease;
+  }
+
+  &__counter {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    font-weight: 800;
+    font-size: 40px;
+    color: $warm-brown;
+  }
+
+  &__counter-number {
+    min-width: 28px;
+    text-align: right;
+  }
+
+  &__counter-suffix {
+   display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    font-weight: 800;
+    font-size: 40px;
+    color: $warm-brown;
+  }
+
+
   @media (max-width: 1024px) {
-    padding: 20px;
 
+    
     &__hero {
-      &-inner {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-      }
-
-      &-image {
-        height: 30vh;
-        width: 90vh;
-      }
+      height: 70vh;
     }
 
     &__container {
@@ -199,82 +199,52 @@
   }
 
   @media (max-width: 768px) {
-    padding: 14px;
-    height: 90vh;
+    .home{
+      height: 188vh;}
 
-    &__hero {
-      padding: 20px;
-      border-radius: 10px;
-
-      &-inner {
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-        height: 80%;       // większa wysokość dla pionowego efektu
-      }
-
-      &-media {
-        width: 70%;          // zmniejszona szerokość, żeby było pionowo
-        height: 80%;       // większa wysokość dla pionowego efektu
-        object-fit: cover;   // wypełnia cały kontener
-        display: flex;
-        justify-content: center;
-        overflow: hidden; // zapobiega wychodzeniu zdjęcia poza ramkę
-
-      }
-
-      &-image {
-        width: 70%;          // zmniejszona szerokość, żeby było pionowo
-        height: 300px;       // większa wysokość dla pionowego efektu
-        object-fit: cover;   // wypełnia cały kontener
-        object-position: center;
-        border-radius: 10px;
-        box-shadow: 0 8px 20px rgba($shadow-color, 0.12);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-        &:hover {
-          transform: scale(1.02);
-          box-shadow: 0 10px 26px rgba($shadow-color, 0.18);
-        }
-      }
+   &__hero {
+      background-color: $white;
+      height: 88vh
     }
 
-    &__title {
-      font-size: 22px;
-      text-align: center;
+    &__hero-media {
+      
+      justify-content: center; /* centrowanie obrazu */
+      align-items: center;
     }
 
-    &__subtitle {
-      font-size: 14px;
-      text-align: center;
-    }
-
-    &__cta {
-      flex-direction: column;
-      gap: 10px;
+    &__hero-image {
       width: 100%;
+      height: 100vh;
+      margin-top:$header-height ;
+      object-fit: cover;
+      border-radius: 0; /* pełny ekran, bez zaokrągleń na mobile */
+    }
 
-      .home__btn {
-        width: 100%;
-        text-align: center;
+    /* strzałki: wewnątrz obrazu, bliżej krawędzi, nie wychodzą poza */
+    &__hero-arrow {
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+      background: rgba($white, 0.5);
+      left: auto;
+      right: auto;
+
+      &--left {
+        left: 12px;
+      }
+      &--right {
+        right: 12px;
       }
     }
-    .home__hero-arrow--left {
-    left: 10px;      // odległość od lewej krawędzi kontenera
-    right: auto;      // reset prawej
-  }
 
-  .home__hero-arrow--right {
-    right: 10px;     // odległość od prawej krawędzi kontenera
-    left: auto;       // reset lewej
-  }
-
-  .home__hero-arrow {
-    transform: translateY(-50%) scale(1);
-    width: 36px;
-    height: 36px;
-    z-index: 10;     // upewnia się, że strzałki są nad obrazkiem
-  }
+    /* kafle: muszą się pojawić pod obrazem, nie nakładać */
+    &__tiles {
+      grid-template-columns: 1fr; /* pojedyncza kolumna na telefonie (pełna szerokość) */
+      padding: 16px;
+      gap: 12px;
+      margin-top: 0; /* nie zachodzą na hero */
+    }
 
     &__container {
       grid-template-columns: 1fr;

@@ -4,66 +4,12 @@ import foto from "../img/foto.jpg";
 import refe from "../img/Referencje_wzór.png";
 
 function About() {
-  const [years, setYears] = useState(0);
-  const [clients, setClients] = useState(0);
+  
   const sectionRef = useRef(null);
-  const startedRef = useRef(false);
   const navigate = useNavigate();
   const phone = "+48 505 357 689";
 
- useEffect(() => {
-  const el = sectionRef.current;
-  if (!el) return;
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !startedRef.current) {
-          startedRef.current = true;
-          startCounters();
-          observer.unobserve(el); // ✅ poprawione
-        }
-      });
-    },
-    {
-      threshold: 0.1, // licznik uruchamia się, gdy sekcja w 30% widoczna
-    }
-  );
-
-  observer.observe(el); // ✅ poprawione
-
-  return () => observer.disconnect();
-}, []);
-
-  function startCounters() {
-    // animacja liczby lat
-    const durationYears = 1000;
-    const startTime = performance.now();
-
-    function stepYears(now) {
-      const t = Math.min(1, (now - startTime) / durationYears);
-      setYears(Math.floor(t * 8));
-      if (t < 1) requestAnimationFrame(stepYears);
-      else setYears(8);
-    }
-    requestAnimationFrame(stepYears);
-
-    // animacja liczby klientów
-    const durationClients = 1400;
-    const startTime2 = performance.now();
-
-    function stepClients(now) {
-      const t = Math.min(1, (now - startTime2) / durationClients);
-      setClients(Math.floor(t * 100));
-      if (t < 1) requestAnimationFrame(stepClients);
-      else setClients(100);
-    }
-    requestAnimationFrame(stepClients);
-  }
-
-  const handleClick = (id) => {
-    navigate(`/realizacje?type=${id}`);
-  };
 
   const services = [
     {
@@ -97,7 +43,9 @@ function About() {
       bullets: ["Piasek, żwir, kruszywo", "Dostawa do klienta", "Doradztwo w doborze"],
     },
   ];
-
+    const handleClick = (id) => {
+      navigate(`/realizacje?type=${id}`);
+    };
   const references = [refe, refe, refe, refe];
 
   return (
@@ -158,64 +106,7 @@ function About() {
         </div>
       </div>
 
-      <div className="about__features">
-        <div className="about__container">
-          <article className="about__feature">
-            <div className="about__feature-top">
-              <svg
-                className="about__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M3 13h2v6H3zM19 5h2v14h-2zM7 9h2v10H7zM13 3h2v16h-2z" />
-              </svg>
-            </div>
-            <h3 className="about__feature-title">Własny sprzęt</h3>
-            <p className="about__feature-desc">
-              Inwestujemy w najlepsze technologie dla optymalnych wyników.
-            </p>
-          </article>
-
-          <article className="about__feature about__feature--counter">
-            <div className="about__feature-top">
-              <div className="about__counter">
-                <span className="about__counter-number">{years}</span>
-              </div>
-            </div>
-            <h3 className="about__feature-title">Doświadczenie</h3>
-            <p className="about__feature-desc">8 lat doświadczenia</p>
-          </article>
-
-          <article className="about__feature about__feature--counter">
-            <div className="about__feature-top">
-              <div className="about__counter">
-                <span className="about__counter-number">{clients}</span>
-                <span className="about__counter-suffix">
-                  {clients >= 100 ? "+" : ""}
-                </span>
-              </div>
-            </div>
-            <h3 className="about__feature-title">Zadowoleni klienci</h3>
-            <p className="about__feature-desc">100+ zadowolonych klientów</p>
-          </article>
-
-          <article className="about__feature">
-            <div className="about__feature-top">
-              <svg
-                className="about__icon"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L15 8l6 .5-4.5 3.5L18 20l-6-4-6 4 1.5-8L3 8.5 9 8z" />
-              </svg>
-            </div>
-            <h3 className="about__feature-title">Kompleksowe usługi</h3>
-            <p className="about__feature-desc">
-              Pełny zakres usług z gwarancją spokoju ducha.
-            </p>
-          </article>
-        </div>
-      </div>
+      
 
       {/* --- SEKCJA REALIZACJI --- */}
       <div className="about__services" aria-label="Nasze realizacje">
